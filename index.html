@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Activity Tracker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        ol {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Daily Activity Tracker (Livia Adi)</h2>
+
+        Aktivitas:
+        <input type="text" id="1" placeholder="contoh: belajar, olahraga">
+
+        Durasi (menit):
+        <input type="number" id="2">
+
+        <button id="3">Tambah</button>
+
+        <p id="4">Total: 0 menit (0 aktivitas)</p>
+
+        <ol id="5"></ol>
+    </div>
+
+    <script>
+        const aktivitasInput = document.getElementById("1");
+        const durasiInput = document.getElementById("2");
+        const tombolTambah = document.getElementById("3");
+        const totalText = document.getElementById("4");
+        const listAktivitas = document.getElementById("5");
+
+        let totalMenit = 0;
+        let jumlahAktivitas = 0;
+
+        tombolTambah.addEventListener("click", function() {
+            const aktivitas = aktivitasInput.value;
+            const durasi = parseInt(durasiInput.value);
+
+            if (aktivitas === "" || isNaN(durasi)) {
+                alert("Isi dengan benar!");
+                return;
+            }
+
+            const item = document.createElement("li");
+            item.textContent = aktivitas + " — " + durasi + " menit";
+            listAktivitas.appendChild(item);
+
+            totalMenit += durasi;
+            jumlahAktivitas++;
+
+            totalText.textContent = 
+                "Total: " + totalMenit + " menit (" + jumlahAktivitas + " aktivitas)";
+
+            aktivitasInput.value = "";
+            durasiInput.value = "";
+        });
+    </script>
+
+</body>
+</html>
